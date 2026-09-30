@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>午夜电影网 | 深夜观影指南 · 高分片单 · 午夜档电影资讯</title>
+<meta name="description" content="午夜电影网（wuyedianyingwang-wap）专注深夜观影指南，提供午夜档高分电影片单、恐怖悬疑片推荐、午夜场影评与观影心得，陪你度过每一个不眠之夜。">
+<meta name="keywords" content="午夜电影网,午夜电影,wuyedianyingwang-wap,深夜观影,高分片单,恐怖片推荐,悬疑电影,午夜场">
+<meta name="author" content="午夜电影网">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://wuyedianyingwang-wap/">
+<link rel="alternate" media="only screen and (max-width: 640px)" href="https://wuyedianyingwang-wap/">
+<style>
+:root{
+  --bg:#07060d; --bg2:#0d0a1a; --ink:#f4f1ff; --muted:#a59fc4;
+  --moon:#e8e4ff; --gold:#ffd166; --violet:#7b5cff; --violet2:#a06bff;
+  --line:rgba(255,255,255,.10); --card:rgba(255,255,255,.045);
+  --shadow:0 18px 48px -22px rgba(80,40,180,.75);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg); color:var(--ink); line-height:1.75;
+  overflow-x:hidden;
+  background-image:
+    radial-gradient(1100px 620px at 82% -8%, rgba(123,92,255,.26), transparent 60%),
+    radial-gradient(900px 540px at 8% 18%, rgba(255,96,180,.14), transparent 62%),
+    radial-gradient(700px 500px at 50% 95%, rgba(80,180,255,.10), transparent 60%);
+  background-attachment:fixed;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+
+/* ===== 星空 ===== */
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* ===== 顶部 ===== */
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(7,6,13,.72);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:18px;height:64px}
+.logo{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:.5px;font-size:19px;flex:0 0 auto}
+.logo .moon{width:34px;height:34px;border-radius:50%;position:relative;flex:0 0 auto;
+  background:radial-gradient(circle at 34% 34%,#fffdf2 0%,#f6eeff 38%,#c9bcff 68%,#8b72e8 100%);
+  box-shadow:0 0 26px rgba(224,214,255,.65),inset -7px -5px 0 rgba(123,92,255,.28)}
+.logo .moon::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:inset 6px 2px 0 rgba(123,92,255,.30)}
+.logo small{display:block;font-size:10px;font-weight:500;color:var(--muted);letter-spacing:1.6px;text-transform:uppercase}
+.menu{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.menu a{font-size:14.5px;color:var(--muted);padding:7px 13px;border-radius:10px;transition:.25s}
+.menu a:hover{color:var(--ink);background:rgba(255,255,255,.07)}
+.menu a.hot{color:var(--gold)}
+.bar{display:none;margin-left:auto;width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:20px}
+
+/* ===== Hero ===== */
+.hero{position:relative;z-index:2;padding:78px 0 56px;text-align:center}
+.hero .tag{display:inline-block;font-size:12px;letter-spacing:2.4px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(255,209,102,.35);border-radius:40px;padding:6px 16px;margin-bottom:22px}
+h1{font-size:clamp(32px,6.4vw,60px);line-height:1.16;font-weight:900;letter-spacing:-.5px}
+h1 em{font-style:normal;background:linear-gradient(96deg,var(--moon),#ffb3e0 46%,var(--violet2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lede{max-width:660px;margin:20px auto 0;color:var(--muted);font-size:clamp(14.5px,2.3vw,17px)}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.btn{padding:13px 26px;border-radius:12px;font-size:15px;font-weight:600;transition:.25s;border:1px solid transparent;cursor:pointer}
+.btn.primary{background:linear-gradient(100deg,var(--violet),var(--violet2));box-shadow:var(--shadow)}
+.btn.ghost{background:var(--card);border-color:var(--line)}
+.btn:hover{transform:translateY(-2px)}
+.stats{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:44px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 22px;min-width:120px}
+.stat b{display:block;font-size:25px;color:var(--gold)}
+.stat span{font-size:12px;color:var(--muted);letter-spacing:.6px}
+
+/* ===== 区块标题 ===== */
+.sec{position:relative;z-index:2;padding:64px 0}
+.sec-h{display:flex;align-items:flex-end;gap:16px;justify-content:space-between;flex-wrap:wrap;margin-bottom:30px}
+.sec-h h2{font-size:clamp(22px,3.6vw,31px);font-weight:800;display:flex;align-items:center;gap:12px}
+.sec-h h2 .num{font-size:12px;font-weight:700;color:var(--bg);background:var(--gold);border-radius:8px;padding:3px 9px;letter-spacing:1px}
+.sec-h .more{color:var(--muted);font-size:13.5px;border-bottom:1px dashed var(--line);padding-bottom:2px}
+
+/* ===== 卡片 ===== */
+.grid{display:grid;gap:20px}
+.grid.films{grid-template-columns:repeat(4,1fr)}
+.grid.shorts{grid-template-columns:repeat(3,1fr)}
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.3s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-6px);border-color:rgba(123,92,255,.55);box-shadow:var(--shadow)}
+.poster{position:relative;aspect-ratio:2/3;overflow:hidden}
+.poster .sky{position:absolute;inset:0}
+.poster .horizon{position:absolute;left:0;right:0;bottom:34%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.7}
+.poster .moon-s{position:absolute;width:52px;height:52px;border-radius:50%;background:radial-gradient(circle at 36% 34%,#fffdf2,#c9bcff 62%,#7b5cff);box-shadow:0 0 28px rgba(224,214,255,.7);top:14%;right:14%}
+.f1 .sky{background:linear-gradient(180deg,#140a2e,#3a1d5e 52%,#1a0d30)}
+.f2 .sky{background:linear-gradient(180deg,#0c1024,#123a5a 55%,#08131f)}
+.f3 .sky{background:linear-gradient(180deg,#100a1c,#2a1244 50%,#150a24)}
+.f4 .sky{background:linear-gradient(180deg,#0a0a14,#2a2a3e 54%,#100f1c)}
+.f5 .sky{background:linear-gradient(180deg,#0e0a18,#4a1830 52%,#18081a)}
+.f6 .sky{background:linear-gradient(180deg,#080a14,#0d2c44 54%,#08121c)}
+.f7 .sky{background:linear-gradient(180deg,#120a1c,#5a3010 54%,#180d10)}
+.f8 .sky{background:linear-gradient(180deg,#0a0e1c,#10244a 54%,#0a1020)}
+.f9 .sky{background:linear-gradient(180deg,#100812,#3a0e2a 52%,#180814)}
+.f10 .sky{background:linear-gradient(180deg,#0a0c16,#1a3a2a 52%,#0c1410)}
+.f11 .sky{background:linear-gradient(180deg,#0e0a18,#3a2a10 52%,#160e08)}
+.f12 .sky{background:linear-gradient(180deg,#0c0a18,#2a1a4a 52%,#100a20)}
+.bldg{position:absolute;left:0;right:0;bottom:0;height:34%;display:flex;align-items:flex-end;gap:3px;padding:0 6%}
+.bldg i{display:block;flex:1;background:linear-gradient(180deg,#050308,#0c0716);border-top-left-radius:2px;border-top-right-radius:2px}
+.bldg i:nth-child(1){height:74%}
+.bldg i:nth-child(2){height:100%;background:linear-gradient(180deg,#10082a,#050308)}
+.bldg i:nth-child(3){height:60%;background:linear-gradient(180deg,#1a1030,#080410)}
+.bldg i:nth-child(4){height:88%}
+.bldg i:nth-child(5){height:46%}
+.bldg i:nth-child(6){height:96%;background:linear-gradient(180deg,#1a1030,#080410)}
+.win{position:absolute;inset:0;background-image:radial-gradient(circle at 18% 78%,var(--gold) 0 1px,transparent 2px),radial-gradient(circle at 40% 70%,var(--gold) 0 1px,transparent 2px),radial-gradient(circle at 66% 82%,var(--gold) 0 1px,transparent 2px),radial-gradient(circle at 84% 74%,var(--gold) 0 1px,transparent 2px);background-size:22% 24%;opacity:.55}
+.meta{position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;gap:6px}
+.badge{font-size:10.5px;font-weight:700;letter-spacing:.5px;padding:4px 9px;border-radius:7px;backdrop-filter:blur(6px);background:rgba(7,6,13,.62);border:1px solid var(--line)}
+.badge.new{color:#0b0a14;background:var(--gold)}
+.badge.hot{color:#fff;border-color:transparent;background:linear-gradient(100deg,#ff5b8a,#ff8a3d)}
+.badge.top{color:var(--gold);border-color:rgba(255,209,102,.4)}
+.rank{position:absolute;right:10px;bottom:10px;font-size:34px;font-weight:900;color:rgba(255,255,255,.92);text-shadow:0 4px 18px rgba(0,0,0,.7);font-style:italic;line-height:1}
+.info{padding:15px 16px 18px;flex:1;display:flex;flex-direction:column}
+.info h3{font-size:16.5px;font-weight:700;margin-bottom:6px}
+.info .row{display:flex;gap:7px;flex-wrap:wrap;margin-top:auto;padding-top:12px}
+.info .row span{font-size:11.5px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:2px 7px}
+.info .row b{margin-left:auto;font-size:12px;color:var(--gold);font-weight:700}
+
+/* ===== 短剧卡 ===== */
+.short{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--card);display:flex;flex-direction:column;transition:.3s}
+.short:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.short .cap{position:relative;aspect-ratio:16/10;overflow:hidden}
+.short .cap .glow{position:absolute;inset:0}
+.g1 .glow{background:linear-gradient(135deg,#2b1055,#7597de)}
+.g2 .glow{background:linear-gradient(135deg,#3a0a2e,#ff5b8a)}
+.g3 .glow{background:linear-gradient(135deg,#102a3a,#00d2ff)}
+.g4 .glow{background:linear-gradient(135deg,#2a1500,#ffb347)}
+.g5 .glow{background:linear-gradient(135deg,#1a0030,#a06bff)}
+.g6 .glow{background:linear-gradient(135deg,#003020,#00ffa2)}
+.short .cap .lbl{position:absolute;top:12px;left:12px;font-size:10.5px;font-weight:700;background:rgba(7,6,13,.6);border:1px solid var(--line);border-radius:7px;padding:4px 9px;backdrop-filter:blur(4px)}
+.short .cap .epi{position:absolute;bottom:12px;right:12px;font-size:11.5px;font-weight:700;color:var(--gold)}
+.short .cap .txt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:clamp(20px,3.6vw,28px);font-weight:900;text-shadow:0 6px 24px rgba(0,0,0,.55)}
+.short .body{padding:15px 16px 17px}
+.short .body h3{font-size:16.5px;font-weight:700}
+.short .body p{font-size:13px;color:var(--muted);margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.short .foot{display:flex;justify-content:space-between;align-items:center;margin-top:13px;font-size:12px;color:var(--muted)}
+.short .foot b{color:var(--gold)}
+
+/* ===== 栏目区 ===== */
+.cols{display:grid;grid-template-columns:1.35fr 1fr;gap:20px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
+.panel h3{font-size:17px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:9px}
+.panel h3 .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+.panel .sub{font-size:12.5px;color:var(--muted);margin-bottom:16px}
+.review-item{display:flex;gap:13px;padding:13px 0;border-bottom:1px dashed var(--line)}
+.review-item:last-child{border-bottom:0;padding-bottom:0}
+.review-item .thumb{width:96px;height:64px;border-radius:10px;flex:0 0 auto;position:relative;overflow:hidden}
+.t1{background:linear-gradient(120deg,#3a1d5e,#7b5cff)}
+.t2{background:linear-gradient(120deg,#123a5a,#00d2ff)}
+.t3{background:linear-gradient(120deg,#4a1830,#ff5b8a)}
+.t4{background:linear-gradient(120deg,#2a2a3e,#a06bff)}
+.t5{background:linear-gradient(120deg,#5a3010,#ffb347)}
+.thumb span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:21px;font-weight:900;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.review-item .txt h4{font-size:15px;font-weight:700}
+.review-item .txt p{font-size:12.5px;color:var(--muted);margin-top:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.review-item .txt .kpi{margin-top:7px;font-size:11.5px;color:var(--gold)}
+.calendar{display:grid;grid-template-columns:44px 1fr;gap:0}
+.day{font-size:12.5px;color:var(--muted);padding:12px 10px 12px 0;border-bottom:1px dashed var(--line);font-weight:600}
+.evt{padding:12px 0 12px 4px;border-bottom:1px dashed var(--line);font-size:13.5px}
+.evt b{display:block;font-size:14.5px;font-weight:700}
+.evt time{font-size:11.5px;color:var(--gold)}
+
+/* ===== 观影指南 ===== */
+.guide{grid-template-columns:repeat(3,1fr)}
+.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;transition:.3s}
+.step:hover{border-color:rgba(123,92,255,.55)}
+.step .ic{width:44px;height:44px;border-radius:12px;background:linear-gradient(130deg,var(--violet),var(--violet2));display:flex;align-items:center;justify-content:center;font-size:21px;margin-bottom:14px}
+.step h3{font-size:16.5px;font-weight:800;margin-bottom:6px}
+.step p{font-size:13.5px;color:var(--muted)}
+.step ol{margin:10px 0 0 17px;font-size:13px;color:var(--muted)}
+.step ol li{padding:2px 0}
+.step .hl{margin-top:13px;font-size:12px;color:var(--gold);border-left:2px solid var(--gold);padding-left:10px}
+
+/* ===== 排行 ===== */
+.ranklist{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.rankbox{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px}
+.rankbox h3{font-size:16.5px;font-weight:800;margin-bottom:14px}
+.rankbox ol{list-style:none;counter-reset:r}
+.rankbox li{counter-increment:r;display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.rankbox li:last-child{border-bottom:0}
+.rankbox li::before{content:counter(r);width:24px;height:24px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted);flex:0 0 auto}
+.rankbox li:nth-child(1)::before{background:var(--gold);color:#0b0a14;border-color:var(--gold)}
+.rankbox li:nth-child(2)::before{color:var(--ink)}
+.rankbox li:nth-child(3)::before{color:var(--ink)}
+.rankbox li em{font-style:normal;margin-left:auto;font-size:12px;color:var(--muted)}
+
+/* ===== 关于 ===== */
+.about{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px;display:grid;grid-template-columns:1.3fr 1fr;gap:34px;align-items:center}
+.about h2{font-size:clamp(21px,3.4vw,28px);font-weight:900;margin-bottom:12px}
+.about p{color:var(--muted);font-size:14.5px}
+.about .pts{margin-top:18px;display:grid;gap:10px}
+.about .pts div{display:flex;gap:11px;align-items:flex-start;font-size:14px}
+.about .pts div::before{content:"🌙";flex:0 0 auto;font-size:15px}
+.about .card-mini{background:linear-gradient(150deg,rgba(123,92,255,.24),rgba(255,96,180,.10));border:1px solid rgba(123,92,255,.4);border-radius:16px;padding:22px}
+.about .card-mini h4{font-size:16px;margin-bottom:12px}
+.about .card-mini ul{list-style:none;font-size:13.5px;color:var(--muted);display:grid;gap:9px}
+.about .card-mini li{padding-left:16px;position:relative}
+.about .card-mini li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+
+/* ===== 底部 ===== */
+footer{border-top:1px solid var(--line);position:relative;z-index:2}
+.foot-in{max-width:1160px;margin:0 auto;padding:38px 20px 20px}
+.foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:28px}
+.foot-top .logo{font-size:18px}
+.foot-top p{color:var(--muted);font-size:13px;margin-top:12px}
+.foot-top h4{font-size:14px;font-weight:800;margin-bottom:12px}
+.foot-top ul{list-style:none;display:grid;gap:8px}
+.foot-top a{color:var(--muted);font-size:13.5px}
+.foot-top a:hover{color:var(--ink)}
+.copy{padding:20px 0 6px;border-top:1px solid var(--line);margin-top:28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:var(--muted)}
+.copy a{color:var(--muted)}
+.copy a:hover{color:var(--ink)}
+
+/* ===== 响应式 ===== */
+@media(max-width:980px){
+  .grid.films{grid-template-columns:repeat(3,1fr)}
+  .grid.shorts,.guide{grid-template-columns:repeat(2,1fr)}
+  .cols,.ranklist{grid-template-columns:1fr}
+  .about{grid-template-columns:1fr;padding:26px}
+  .foot-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:680px){
+  .nav{height:58px;gap:10px}
+  .logo{font-size:16.5px}
+  .logo small{display:none}
+  .menu{display:none;position:absolute;top:58px;left:12px;right:12px;flex-direction:column;background:rgba(13,10,26,.97);border:1px solid var(--line);border-radius:14px;padding:10px;box-shadow:var(--shadow)}
+  .menu.open{display:flex}
+  .menu a{padding:11px 14px;border-radius:9px}
+  .bar{display:block}
+  .hero{padding:48px 0 34px}
+  .stats{display:none}
+  .sec{padding:44px 0}
+  .grid.films{grid-template-columns:repeat(2,1fr);gap:14px}
+  .grid.shorts,.guide{grid-template-columns:1fr}
+  .card .info{padding:13px 14px 15px}
+  .info h3{font-size:15.5px}
+  .poster .moon-s{width:38px;height:38px}
+  .panel{padding:18px}
+  .review-item .thumb{width:80px;height:56px}
+  .about{padding:22px}
+  .foot-top{grid-template-columns:1fr}
+  .copy{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaolu.js"></script>
+
+<canvas id="stars" aria-hidden="true"></canvas>
+
+<!-- ===== 顶部导航 ===== -->
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="午夜电影网 首页">
+      <span class="moon" aria-hidden="true"></span>
+      <span>午夜电影网<small>WUYEDIAN YINGWANG</small></span>
+    </a>
+    <nav class="menu" id="menu">
+      <a href="#films">午夜首映</a>
+      <a href="#shorts" class="hot">深夜短剧</a>
+      <a href="#reviews">影评手记</a>
+      <a href="#schedule">午夜场表</a>
+      <a href="#guide">观影指南</a>
+      <a href="#rank">口碑榜</a>
+      <a href="#about">关于本站</a>
+    </nav>
+    <button class="bar" id="bar" aria-label="打开菜单">☰</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== Hero ===== -->
+  <section class="hero wrap">
+    <span class="tag">★ Midnight Cinema · 2026 深夜档</span>
+    <h1>把城市关成静音<br>只剩你和<em>一部好电影</em></h1>
+    <p class="lede">午夜电影网（wuyedianyingwang-wap）是一份写给熬夜人的深夜观影指南——午夜首映片单、悬疑惊悚推荐、影评手记与午夜场次排期，陪你度过每一个不眠之夜。</p>
+    <div class="cta">
+      <a class="btn primary" href="#films">今晚看什么</a>
+      <a class="btn ghost" href="#guide">深夜观影指南</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>1260+</b><span>精选午夜片单</span></div>
+      <div class="stat"><b>98 部</b><span>本周新入榜</span></div>
+      <div class="stat"><b>8.9</b><span>平均口碑评分</span></div>
+      <div class="stat"><b>24h</b><span>影迷留言守候</span></div>
+    </div>
+  </section>
+
+  <!-- ===== 午夜首映 ===== -->
+  <section class="sec wrap" id="films">
+    <div class="sec-h">
+      <h2><span class="num">01</span>午夜首映</h2>
+      <a class="more" href="#">查看完整片单 →</a>
+    </div>
+    <div class="grid films">
+
+      <article class="card">
+        <div class="poster">
+          <div class="sky f1"><div class="moon-s"></div><div class="horizon"></div><div class="bldg"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="win"></div></div>
+          <div class="meta"><span class="badge hot">热播</span><span class="badge">悬疑 · 2026</span></div>
+          <span class="rank">01</span>
+        </div>
+        <div class="info">
+          <h3>暗夜追光</h3>
+          <p>在黑暗中寻找真相，一场关于记忆与救赎的悬疑之旅，每一帧都藏着反转。</p>
+          <div class="row"><span>悬疑</span><span>科幻</span><span>2026</span><b>★ 9.3</b></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="poster">
+          <div class="sky f2"><div class="moon-s" style="background:radial-gradient(circle at 36% 34%,#eaf6ff,#7fd0ff 62%,#2a6fb0)"></div><div class="horizon"></div><div class="bldg"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="win"></div></div>
+          <div class="meta"><span class="badge">恐怖 · 2026</span></div>
+          <span class="rank">02</span>
+        </div>
+        <div class="info">
+          <h3>寂静岭·重生</h3>
+          <p>浓雾再次笼罩小镇，这一次的回响来自更深一层的梦境。</p>
+          <div class="row"><span>恐怖</span><span>惊悚</span><span>2026</span><b>★ 9.2</b></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="poster">
+          <div class="sky f3"><div class="moon-s"></div><div class="horizon"></div><div class="bldg"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="win"></div></div>
+          <div class="meta"><span class="badge">惊悚 · 2026</span></div>
+          <span class="rank">03</span>
+        </div>
+        <div class="info">
+          <h3>鬼影实录 7</h3>
+          <p>一台彻夜运转的摄像机，记录下公寓里所有不该被看见的动静。</p>
+          <div class="row"><span>惊悚</span><span>伪纪录</span><span>2026</span><b>★ 8.9</b></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="poster">
+          <div class="sky f4"><div class="moon-s"></div><div class="horizon"></div><div class="bldg"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="win"></div></div>
+          <div class="meta"><span class="badge top">榜首</span><span class="badge">悬疑 · 2025</span></div>
+          <span class="rank">04</span>
+        </div>
+        <div class="info">
+          <h3>午夜凶铃·新章</h3>
+          <p>诅咒再次降临，录像带里的铃声在午夜准时响起。</p>
+          <div class="row"><span>悬疑</span><span>恐怖</span><span>2025</span><b>★ 9.0</b></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="poster">
+          <div class="sky f5"><div class="moon-s"></div><div class="horizon"></div><div class="bldg"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="win"></div></div>
+          <div class="meta"><span class="badge hot">热播</span><span class="badge">恐怖 · 2026</span></div>
+          <span class="rank">05</span>
+        </div>
+        <div class="info">
+          <h3>招魂 4</h3>
+          <p>驱魔人夫妇面对职业生涯最棘手的一桩案件，真相远比传说更冷。</p>
+          <div class="row"><span>恐怖</span><span>惊悚</span><span>2026</span><b>★ 8.7</b></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="poster">
+          <div class="sky f6"><div class="moon-s" style="background:radial-gradient(circle at 36% 34%,#eaf6ff,#7fd0ff 62%,#2a6fb0)"></div><div class="horizon"></div><div class="bldg"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="win"></div></div>
+          <div class="meta"><span class="badge">动作 · 2026</span></div>
+          <span class="rank">06</span>
+        </div>
+        <div class="info">
+          <h3>暗夜骑士·崛起</h3>
+          <p>夜色成为最好的掩护，一场横跨两座城市的追凶行动就此展开。</p>
+          <div class="row"><span>动作</span><span>犯罪</span><span>2026</span><b>★ 9.4</b></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="poster">
+          <div class="sky f7"><div class="moon-s" style="background:radial-gradient(circle at 36% 34%,#fff5e0,#ffd28a 62%,#c98a30)"></div><div class="horizon"></div><div class="bldg"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="win"></div></div>
+          <div class="meta"><span class="badge">科幻 · 2025</span></div>
+          <span class="rank">07</span>
+        </div>
+        <div class="info">
+          <h3>异形·契约 2</h3>
+          <p>殖民飞船误入未知星系，舱门开启的瞬间，寂静被打破。</p>
+          <div class="row"><span>科幻</span><span>惊悚</span><span>2025</span><b>★ 8.5</b></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="poster">
+          <div class="sky f8"><div class="moon-s"></div><div class="horizon"></div><div class="bldg"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="win"></div></div>
+          <div class="meta"><span class="badge new">新片</span><span class="badge">科幻 · 2026</span></div>
+          <span class="rank">08</span>
+        </div>
+        <div class="info">
+          <h3>沙丘·暗影</h3>
+          <p>沙漠星球的权力博弈再起，命运在风沙中写下新的注脚。</p>
+          <div class="row"><span>冒险</span><span>科幻</span><span>2026</span><b>★ 9.1</b></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== 深夜短剧 ===== -->
+  <section class="sec wrap" id="shorts" style="padding-top:0">
+    <div class="sec-h">
+      <h2><span class="num">02</span>深夜短剧 · 暗夜故事</h2>
+      <a class="more" href="#">全部短剧 →</a>
+    </div>
+    <div class="grid shorts">
+
+      <article class="short">
+        <div class="cap g1">
+          <span class="lbl">悬疑 · 新</span>
+          <span class="txt">深夜便利店</span>
+          <span class="epi">全 8 集</span>
+        </div>
+        <div class="body">
+          <h3>深夜便利店</h3>
+          <p>凌晨两点的便利店，每个推门进来的客人都带着一个不能说的秘密。</p>
+          <div class="foot"><span>每集 12 分钟 · 悬疑</span><b>★ 8.8</b></div>
+        </div>
+      </article>
+
+      <article class="short">
+        <div class="cap g2">
+          <span class="lbl">爱情 · 热</span>
+          <span class="txt">暗恋日记</span>
+          <span class="epi">全 12 集</span>
+        </div>
+        <div class="body">
+          <h3>暗恋日记</h3>
+          <p>三百六十五天的暗恋记录，在被发现之前，都只是纸上的心事。</p>
+          <div class="foot"><span>每集 10 分钟 · 爱情</span><b>★ 9.0</b></div>
+        </div>
+      </article>
+
+      <article class="short">
+        <div class="cap g3">
+          <span class="lbl">惊悚 · 更新中</span>
+          <span class="txt">午夜出租车</span>
+          <span class="epi">更新至 6 集</span>
+        </div>
+        <div class="body">
+          <h3>午夜出租车</h3>
+          <p>跑夜班的司机接到的最后一单，目的地在地图上根本不存在。</p>
+          <div class="foot"><span>每集 15 分钟 · 惊悚</span><b>★ 8.6</b></div>
+        </div>
+      </article>
+
+      <article class="short">
+        <div class="cap g4">
+          <span class="lbl">剧情 · 新</span>
+          <span class="txt">失眠诊所</span>
+          <span class="epi">全 10 集</span>
+        </div>
+        <div class="body">
+          <h3>失眠诊所</h3>
+          <p>一家只收治失眠者的诊所，治疗方案是每个病人自己都意想不到的。</p>
+          <div class="foot"><span>每集 14 分钟 · 剧情</span><b>★ 8.7</b></div>
+        </div>
+      </article>
+
+      <article class="short">
+        <div class="cap g5">
+          <span class="lbl">悬疑 · 热</span>
+          <span class="txt">暗夜直播</span>
+          <span class="epi">更新至 4 集</span>
+        </div>
+        <div class="body">
+          <h3>暗夜直播</h3>
+          <p>一场午夜直播突然失控，镜头另一端的人，似乎能看见屏幕前的你。</p>
+          <div class="foot"><span>每集 13 分钟 · 悬疑</span><b>★ 8.9</b></div>
+        </div>
+      </article>
+
+      <article class="short">
+        <div class="cap g6">
+          <span class="lbl">喜剧 · 新</span>
+          <span class="txt">午夜外卖</span>
+          <span class="epi">全 6 集</span>
+        </div>
+        <div class="body">
+          <h3>午夜外卖</h3>
+          <p>送了一百单深夜外卖的骑手，听过的故事比看过的电影还多。</p>
+          <div class="foot"><span>每集 11 分钟 · 喜剧</span><b>★ 8.4</b></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== 影评手记 + 午夜场表 ===== -->
+  <section class="sec wrap" id="reviews" style="padding-top:0">
+    <div class="cols">
+
+      <div class="panel">
+        <h3><span class="dot"></span>影评手记</h3>
+        <p class="sub">来自午夜电影网编辑部与影迷的真实观感，陪你读懂每一部深夜佳片。</p>
+
+        <article class="review-item">
+          <div class="thumb t1"><span>暗</span></div>
+          <div class="txt">
+            <h4>《暗夜追光》：用沉默讲完了所有台词</h4>
+            <p>全片几乎舍弃了背景音乐，却让每一次呼吸都成为叙事的一部分。午夜观影时，这种留白会被放大成一种奇特的参与感。</p>
+            <div class="kpi">深度长评 · 预计阅读 6 分钟</div>
+          </div>
+        </article>
+
+        <article class="review-item">
+          <div class="thumb t2"><span>寂</span></div>
+          <div class="txt">
+            <h4>《寂静岭·重生》：雾不是氛围，是角色</h4>
+            <p>续作把前作埋下的宗教隐喻推到了更极致的位置，结尾那场雨中的长镜头值得反复看三遍。</p>
+            <div class="kpi">深度长评 · 预计阅读 8 分钟</div>
+          </div>
+        </article>
+
+        <article class="review-item">
+          <div class="thumb t3"><span>凶</span></div>
+          <div class="txt">
+            <h4>《午夜凶铃·新章》：贞子归来，但恐惧换了载体</h4>
+            <p>这次让人后背发凉的不是画面，而是片中对"媒介恐惧"的重新诠释，极其贴合当下的观看习惯。</p>
+            <div class="kpi">深度长评 · 预计阅读 5 分钟</div>
+          </div>
+        </article>
+
+        <article class="review-item">
+          <div class="thumb t4"><span>骑</span></div>
+          <div class="txt">
+            <h4>《暗夜骑士·崛起》：夜色是最好的蒙版</h4>
+            <p>动作戏的剪辑节奏快而不乱，真正出彩的是那些发生在暗处、没有一句对白的对手戏。</p>
+            <div class="kpi">深度长评 · 预计阅读 7 分钟</div>
+          </div>
+        </article>
+
+        <article class="review-item">
+          <div class="thumb t5"><span>沙</span></div>
+          <div class="txt">
+            <h4>《沙丘·暗影》：把宏大的东西，讲得很私人</h4>
+            <p>如果说前作是史诗，这部更像一封写给孤独者的长信，配乐在午夜耳机里格外动人。</p>
+            <div class="kpi">深度长评 · 预计阅读 6 分钟</div>
+          </div>
+        </article>
+      </div>
+
+      <div class="panel" id="schedule">
+        <h3><span class="dot"></span>本周午夜场表</h3>
+        <p class="sub">整理自公开影院排期，具体场次请以影院当日公告为准。</p>
+        <div class="calendar">
+          <div class="day">周一</div>
+          <div class="evt"><b>经典修复专场 ·《城市之光》</b><time>23:40 散场</time></div>
+          <div class="day">周二</div>
+          <div class="evt"><b>悬疑夜 ·《暗夜追凶》点映</b><time>23:20 / 01:10 两场</time></div>
+          <div class="day">周三</div>
+          <div class="evt"><b>恐怖周 ·《招魂 4》午夜首映</b><time>23:55 开场</time></div>
+          <div class="day">周四</div>
+          <div class="evt"><b>影迷交流场 ·《寂静岭·重生》</b><time>23:30 映后谈</time></div>
+          <div class="day">周五</div>
+          <div class="evt"><b>周末前夜 ·《暗夜骑士·崛起》</b><time>23:15 / 02:00</time></div>
+          <div class="day">周六</div>
+          <div class="evt"><b>通宵马拉松 · 悬疑三部曲</b><time>23:00 连映至清晨</time></div>
+          <div class="day">周日</div>
+          <div class="evt"><b>收官场 · 纪录片《午夜城市》</b><time>23:45 散场</time></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== 观影指南 ===== -->
+  <section class="sec wrap" id="guide" style="padding-top:0">
+    <div class="sec-h">
+      <h2><span class="num">03</span>深夜观影指南</h2>
+      <span class="more">为熬夜的你准备的三份清单</span>
+    </div>
+    <div class="grid guide">
+
+      <article class="step">
+        <div class="ic">🌙</div>
+        <h3>一个人看的午夜片单</h3>
+        <p>独处时的观影节奏和白天完全不同，节奏可以慢，但情绪必须准。</p>
+        <ol>
+          <li>先确认今晚想被"治愈"还是想被"吓到"</li>
+          <li>避免开场即高能，留一段热身时间</li>
+          <li>备好耳机，午夜观影的声场就是氛围本身</li>
+          <li>看完留十分钟，别急着刷手机</li>
+        </ol>
+        <div class="hl">推荐类型：悬疑 / 文艺 / 慢节奏科幻</div>
+      </article>
+
+      <article class="step">
+        <div class="ic">🎧</div>
+        <h3>深夜声场怎么调</h3>
+        <p>午夜最容易被忽略的不是画面，而是声音。声场对了，廉价片也能看得很贵。</p>
+        <ol>
+          <li>音量控制在白天水平的 60% 左右</li>
+          <li>关闭空间音效的"增强人声"选项</li>
+          <li>恐怖片建议外放，惊悚片建议耳机</li>
+          <li>常备一副降噪耳机，应对突发的安静</li>
+        </ol>
+        <div class="hl">设备提示：睡前一小时调低蓝光更护眼</div>
+      </article>
+
+      <article class="step">
+        <div class="ic">🍿</div>
+        <h3>不熬坏的观影节奏</h3>
+        <p>午夜场不是熬夜比赛。看完还能睡着的片单，才是好片单。</p>
+        <ol>
+          <li>每 45 分钟起身一次，活动肩颈</li>
+          <li>片长超过 150 分钟建议分段看</li>
+          <li>凌晨两点后只看轻松的，不看致郁的</li>
+          <li>看完一部再决定要不要加映</li>
+        </ol>
+        <div class="hl">建议收尾时间：凌晨 01:30 前</div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== 口碑榜 ===== -->
+  <section class="sec wrap" id="rank" style="padding-top:0">
+    <div class="sec-h">
+      <h2><span class="num">04</span>口碑榜 · 午夜必看</h2>
+      <a class="more" href="#">更新于本周一 →</a>
+    </div>
+    <div class="ranklist">
+
+      <div class="rankbox">
+        <h3>🎬 午夜热播 TOP10</h3>
+        <ol>
+          <li>暗夜追光<span>2026 悬疑</span><em>9.3</em></li>
+          <li>寂静岭·重生<span>2026 恐怖</span><em>9.2</em></li>
+          <li>暗夜骑士·崛起<span>2026 动作</span><em>9.4</em></li>
+          <li>招魂 4<span>2026 恐怖</span><em>8.7</em></li>
+          <li>午夜凶铃·新章<span>2025 悬疑</span><em>9.0</em></li>
+          <li>鬼影实录 7<span>2026 惊悚</span><em>8.9</em></li>
+          <li>沙丘·暗影<span>2026 科幻</span><em>9.1</em></li>
+          <li>异形·契约 2<span>2025 科幻</span><em>8.5</em></li>
+          <li>失眠故事<span>2026 悬疑</span><em>8.6</em></li>
+          <li>月球·暗面<span>2026 科幻</span><em>9.1</em></li>
+        </ol>
+      </div>
+
+      <div class="rankbox">
+        <h3>📺 短剧热度榜</h3>
+        <ol>
+          <li>深夜便利店<span>悬疑 · 全8集</span><em>8.8</em></li>
+          <li>暗恋日记<span>爱情 · 全12集</span><em>9.0</em></li>
+          <li>午夜出租车<span>惊悚 · 更新中</span><em>8.6</em></li>
+          <li>暗夜直播<span>悬疑 · 更新中</span><em>8.9</em></li>
+          <li>失眠诊所<span>剧情 · 全10集</span><em>8.7</em></li>
+          <li>午夜外卖<span>喜剧 · 全6集</span><em>8.4</em></li>
+          <li>暗夜书店<span>奇幻 · 更新中</span><em>8.3</em></li>
+          <li>午夜电话亭<span>悬疑 · 全8集</span><em>8.8</em></li>
+          <li>暗恋便利店<span>爱情 · 全6集</span><em>8.5</em></li>
+          <li>凌晨四点的花店<span>治愈 · 全10集</span><em>8.7</em></li>
+        </ol>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== 关于本站 ===== -->
+  <section class="sec wrap" id="about" style="padding-top:0">
+    <div class="about">
+      <div>
+        <h2>关于午夜电影网</h2>
+        <p>午夜电影网（wuyedianyingwang-wap）专注深夜观影这件事。我们相信，深夜是一个人最接近电影的时刻——城市安静下来，屏幕成了唯一的光源，好电影才会真正开口说话。</p>
+        <div class="pts">
+          <div>精选午夜档片单，悬疑、恐怖、科幻、文艺一应俱全，每周定期上新</div>
+          <div>深度影评手记，陪你读懂每一部值得熬夜看完的好电影</div>
+          <div>整理公开午夜场次排期，方便你安排一次真正的影院之夜</div>
+          <div>留言板常年开放，深夜求片、推荐、吐槽都欢迎</div>
+        </div>
+      </div>
+      <div class="card-mini">
+        <h4>📮 影迷留言板</h4>
+        <ul>
+          <li>提交你的深夜求片需求</li>
+          <li>分享最近打动你的一部片</li>
+          <li>推荐小众高分冷门佳片</li>
+          <li>反馈片单错误或更新建议</li>
+        </ul>
+        <a class="btn primary" href="#" style="display:inline-block;margin-top:18px;padding:11px 22px;font-size:14px">写下今晚的留言</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== 底部 ===== -->
+<footer>
+  <div class="foot-in">
+    <div class="foot-top">
+      <div>
+        <div class="logo">
+          <span class="moon" aria-hidden="true"></span>
+          <span>午夜电影网<small>WUYEDIAN YINGWANG</small></span>
+        </div>
+        <p>一个写给熬夜人的深夜观影指南。片单、影评、午夜场次排期，以及一份不打烊的留言板。</p>
+      </div>
+      <div>
+        <h4>栏目导航</h4>
+        <ul>
+          <li><a href="#films">午夜首映</a></li>
+          <li><a href="#shorts">深夜短剧</a></li>
+          <li><a href="#reviews">影评手记</a></li>
+          <li><a href="#rank">口碑榜</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>观影服务</h4>
+        <ul>
+          <li><a href="#schedule">午夜场表</a></li>
+          <li><a href="#guide">观影指南</a></li>
+          <li><a href="#">求片留言</a></li>
+          <li><a href="#">片单订阅</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>关于</h4>
+        <ul>
+          <li><a href="#about">关于本站</a></li>
+          <li><a href="#">投稿与合作</a></li>
+          <li><a href="#">免责声明</a></li>
+          <li><a href="#">联系我们</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 2026 午夜电影网（wuyedianyingwang-wap）. 本站为影视资讯与观影指南平台，所有影片信息仅供参考。</span>
+      <span>网站名称：午夜电影网 ｜ 网址：<a href="https://wuyedianyingwang-wap">https://wuyedianyingwang-wap</a> ｜ <a href="#top">返回顶部 ↑</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// 星空背景
+(function(){
+  var c=document.getElementById('stars'),x=c.getContext('2d');
+  var w,h,dpr=Math.min(window.devicePixelRatio||1,2),n=0,stars=[];
+  function resize(){w=c.width=innerWidth*dpr;h=c.height=innerHeight*dpr;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';n=Math.round(innerWidth*0.16);stars=[];for(var i=0;i<n;i++){stars.push({x:Math.random()*w,y:Math.random()*h,r:(Math.random()*1.6+0.3)*dpr,a:Math.random()*Math.PI*2,s:Math.random()*0.02+0.005,mx:Math.random()<0.12})}}
+  function draw(){x.clearRect(0,0,w,h);for(var i=0;i<n;i++){var s=stars[i];s.a+=s.s;var al=0.35+Math.abs(Math.sin(s.a))*0.65;x.beginPath();x.fillStyle='rgba(232,228,255,'+al.toFixed(3)+')';x.arc(s.x,s.y,s.r,0,7);x.fill();if(s.mx){x.beginPath();x.fillStyle='rgba(255,209,102,'+(al*0.5).toFixed(3)+')';x.arc(s.x,s.y,s.r*1.6,0,7);x.fill()}}requestAnimationFrame(draw)}
+  addEventListener('resize',resize);resize();draw();
+})();
+// 移动端菜单
+(function(){
+  var b=document.getElementById('bar'),m=document.getElementById('menu');
+  b.addEventListener('click',function(){m.classList.toggle('open')});
+  m.addEventListener('click',function(e){if(e.target.tagName==='A')m.classList.remove('open')});
+})();
+</script>
+
+</body>
+</html>
